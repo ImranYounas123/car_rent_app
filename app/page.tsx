@@ -44,11 +44,7 @@ export default async function Home({ searchParams }: homeProps) {
                     ))
                   }
                 </div>
-                <div className='flex justify-center mt-3'>
-                  <button className= 'bg-primary-blue text-white py-2 px-4 rounded-md'>
-                    <span>Load More</span>
-                  </button>
-                </div>
+               
               </section>
             ) :
               (

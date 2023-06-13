@@ -31,3 +31,7 @@ export interface CarCardProps {
     transmission: string;
     drive: string;
 }
+export interface ShowMoreProps {
+    pageNumber: number;
+    isNextPage: boolean;
+}
