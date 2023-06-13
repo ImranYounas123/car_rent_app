@@ -1,9 +1,11 @@
+// 'use client';
 
 import { FilterComponent, SearchBar } from '@/components'
+import CarCardComponent from '@/components/CarCardComponent';
 
 import Hero from '@/components/Hero'
 import { fuels, yearsOfProduction } from '@/constants'
-import { homeProps } from '@/types'
+import { CarCardProps, homeProps } from '@/types'
 import { fetchCars } from '@/utils'
 import Image from 'next/image'
 
@@ -15,9 +17,9 @@ export default async function Home({ searchParams }: homeProps) {
     limit: searchParams.limit || 10,
     model: searchParams.model || "",
     year: searchParams.year || 2023
-  })
+  });
+  // const 
   const isNoCars = !Array.isArray(getAllCars) || getAllCars.length < 1 || !getAllCars
-  console.log(getAllCars)
   return (
     <main className='overflow-hidden'>
       <Hero />
@@ -32,6 +34,29 @@ export default async function Home({ searchParams }: homeProps) {
             <FilterComponent title='fuel' options={fuels} />
             <FilterComponent title='year' options={yearsOfProduction} />
           </div>
+          {
+            !isNoCars ? (
+              <section>
+                <div className='home__cars-wrapper'>
+                  {
+                    getAllCars?.map((car) => (
+                      <CarCardComponent car={car} />
+                    ))
+                  }
+                </div>
+                <div className='flex justify-center mt-3'>
+                  <button className= 'bg-primary-blue text-white py-2 px-4 rounded-md'>
+                    <span>Load More</span>
+                  </button>
+                </div>
+              </section>
+            ) :
+              (
+                <div>
+
+                </div>
+              )
+          }
         </div>
       </div>
     </main>

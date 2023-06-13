@@ -21,3 +21,13 @@ export interface FilterProps {
 export interface homeProps {
     searchParams: FilterProps
 }
+
+// city_mpg, year, make, model, transmission, drive 
+export interface CarCardProps {
+    city_mpg: number;
+    year: number;
+    make: string;
+    model: string;
+    transmission: string;
+    drive: string;
+}
