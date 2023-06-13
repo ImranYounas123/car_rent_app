@@ -14,7 +14,7 @@ export default async function Home({ searchParams }: homeProps) {
     fuel: searchParams.fuel || "",
     limit: searchParams.limit || 10,
     model: searchParams.model || "",
-    year: searchParams.year || 2023
+    year: searchParams.year || 2022
   })
   const isNoCars = !Array.isArray(getAllCars) || getAllCars.length < 1 || !getAllCars
   console.log(getAllCars)
