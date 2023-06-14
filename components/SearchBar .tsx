@@ -1,5 +1,8 @@
+"use client";
+
 import Image from 'next/image'
 import React from 'react'
+import SearchManufacturer from './SearchManufacturer '
 
 const SearchBtn = ({ otherClasses }: { otherClasses: string }) => (
     <button type='submit' className={`-ml-3 z-10 ${otherClasses}`}>
@@ -15,10 +18,15 @@ const SearchBtn = ({ otherClasses }: { otherClasses: string }) => (
 
 
 const SearchBar = () => {
+    const [manufacturer, setManufacturer] = React.useState('')
     return (
         <>
             <form className='searchbar'>
                 <div className='searchbar__item'>
+                    <SearchManufacturer
+                        manufacturer={manufacturer}
+                        setManufacturer={() => { }}
+                    />
                     <SearchBtn otherClasses='sm:hidden' />
                 </div>
                 <div className='searchbar__item'>

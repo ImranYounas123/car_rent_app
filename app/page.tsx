@@ -4,6 +4,7 @@ import { FilterComponent, SearchBar } from '@/components'
 import CarCardComponent from '@/components/CarCardComponent';
 
 import Hero from '@/components/Hero'
+import ShowMore from '@/components/ShowMore';
 import { fuels, yearsOfProduction } from '@/constants'
 import { CarCardProps, homeProps } from '@/types'
 import { fetchCars } from '@/utils'
@@ -44,12 +45,16 @@ export default async function Home({ searchParams }: homeProps) {
                     ))
                   }
                 </div>
-               
+                <ShowMore
+                  pageNumber={4}
+                  isNextPage={false}
+                />
               </section>
             ) :
               (
-                <div>
-
+                <div className='home__error-container'>
+                  <h2 className='text-black text-xl font-bold'>Oops, no results</h2>
+                  <p>{getAllCars?.message}</p>
                 </div>
               )
           }
