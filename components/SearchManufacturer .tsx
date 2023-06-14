@@ -13,7 +13,6 @@ const SearchManufacturer = ({ manufacturer, setManufacturer }: SearchManuFacture
             .replace(/\s+/g, "")
             .includes(query.toLowerCase().replace(/\s+/g, ""))
     );
-    console.log(manufacturers)
     return (
         <>
             <div className='search-manufacturer '>
@@ -31,20 +30,26 @@ const SearchManufacturer = ({ manufacturer, setManufacturer }: SearchManuFacture
                         <Combobox.Input
                             className="search-manufacturer__input"
                             placeholder='Volkswagen...'
+                            displayValue={(item: string) => item}
+                            onChange={(e) => setQuery(e.currentTarget.value)}
                         />
                     </div>
                     <Transition
                         as={React.Fragment}
                         leave="transition ease-in duration-100"
                         leaveFrom="opacity-100"
-                        leaveTo="opacity-0">
+                        leaveTo="opacity-0"
+                        afterEnter={() => setQuery("")}
+                    >
                         <Combobox.Options className='search-manufacturer__options' static>
                             {
-                                manufacturers.length !== 0 && query === "" ? (
+                                // if there are no items, show  "Create New" item, otherwise render the filtered items
+                                filterManufacturers.length === 0 && query !== "" ? (
                                     <Combobox.Option value={query}>
                                         Create "{query}"
                                     </Combobox.Option>
                                 ) : (
+                                    // render the filtered items
                                     filterManufacturers.map((item, index) => (
                                         <Combobox.Option key={item} value={item}>
                                             {({ selected, active }) => (

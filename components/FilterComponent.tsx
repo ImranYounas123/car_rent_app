@@ -4,14 +4,19 @@ import { customFilterProps } from '@/types'
 import React from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import Image from 'next/image';
-
+import { useRouter } from 'next/navigation';
+import { updateSearchParams } from '@/utils';
 const FilterComponent = ({ title, options }: customFilterProps) => {
-
+    const router = useRouter();
     const [selected, setSelected] = React.useState(options[0]);
+    const handleUpdateParams = (e: { title: string, value: string }) => {
 
+        const newPathname = updateSearchParams(title, e.value.toLowerCase());
+        router.push(newPathname);
+    }
     return (
         <div className='w-fit mb-32'>
-            <Listbox value={selected} onChange={(e) => { setSelected(e) }} >
+            <Listbox value={selected} onChange={(e) => { setSelected(e); handleUpdateParams(e); }} >
                 <div className="relative mt-1">
                     <Listbox.Button className="custom-filter__btn">
                         <span className='block truncate'>{selected.title}</span>
