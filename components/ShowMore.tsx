@@ -4,7 +4,7 @@ import React from 'react'
 const ShowMore = ({ pageNumber, isNextPage }: ShowMoreProps) => {
     return (
         <div>
-
+            
         </div>
     )
 }
