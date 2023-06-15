@@ -21,6 +21,7 @@ export default async function Home({ searchParams }: homeProps) {
   });
   // const 
   const isNoCars = !Array.isArray(getAllCars) || getAllCars.length < 1 || !getAllCars
+  console.log((searchParams.limit || 10) > getAllCars?.length)
   return (
     <main className='overflow-hidden'>
       <Hero />
@@ -46,8 +47,8 @@ export default async function Home({ searchParams }: homeProps) {
                   }
                 </div>
                 <ShowMore
-                  pageNumber={4}
-                  isNextPage={false}
+                   pageNumber={(searchParams.limit || 5) / 5}
+                   isNextPage={(searchParams.limit || 5) > getAllCars.length}
                 />
               </section>
             ) :

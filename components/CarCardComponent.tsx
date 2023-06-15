@@ -1,6 +1,6 @@
 "use client"
 import { CarCardProps } from '@/types'
-import { generateCarImageUrl } from '@/utils'
+import { calculateCarRentPrice, generateCarImageUrl } from '@/utils'
 import Image from 'next/image'
 import React, { useState } from 'react'
 import { CustomBtn } from '.'
@@ -9,11 +9,12 @@ import CarDetails from './CarDetails'
 interface CarCard {
     car: CarCardProps
 }
-
 const CarCardComponent = ({ car }: CarCard) => {
     const { city_mpg, drive, make, model, transmission, year } = car
     const [isOpen, setIsOpen] = useState(false)
-    console.log(make)
+    // console.log(city_mpg, year)
+
+    const carRent =  calculateCarRentPrice(city_mpg, year);
     return (
         <>
             <div className='car-card group'>
@@ -22,7 +23,7 @@ const CarCardComponent = ({ car }: CarCard) => {
                 </div>
                 <p className='flex mt-6 text-[32px] leading-[38px] font-extrabold'>
                     <span className='self-start text-[14px] leading-[17px] font-semibold'>$</span>
-                    {4343}
+                    {carRent}
                     <span className='self-end text-[14px] leading-[17px] font-medium'>/day</span>
                 </p>
                 <div className='relative w-full h-40 my-3 object-contain'>

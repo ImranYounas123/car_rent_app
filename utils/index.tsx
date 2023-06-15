@@ -1,5 +1,17 @@
 import { CarCardProps, FilterProps } from "@/types";
 
+export const calculateCarRentPrice = (city_mpg: number, year: number) => {
+  let basePerDay = 50;
+  let mileAgeFactor = 0.1;
+  let ageFacor = 0.1;
+
+  const mileAgeFactorRate = city_mpg * mileAgeFactor;
+  const ageFacorRate = (new Date().getFullYear() - year) * ageFacor;
+  const totalRate = basePerDay + mileAgeFactorRate + ageFacorRate;
+
+  return totalRate.toFixed(0);
+}
+
 
 export async function fetchCars(filters: FilterProps) {
   const { manufacturer, year, model, limit, fuel } = filters;

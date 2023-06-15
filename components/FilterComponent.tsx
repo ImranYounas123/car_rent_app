@@ -9,11 +9,12 @@ import { updateSearchParams } from '@/utils';
 const FilterComponent = ({ title, options }: customFilterProps) => {
     const router = useRouter();
     const [selected, setSelected] = React.useState(options[0]);
-    const handleUpdateParams = (e: { title: string, value: string }) => {
 
+    const handleUpdateParams = (e: { title: string, value: string }) => {
         const newPathname = updateSearchParams(title, e.value.toLowerCase());
         router.push(newPathname);
     }
+    
     return (
         <div className='w-fit mb-32'>
             <Listbox value={selected} onChange={(e) => { setSelected(e); handleUpdateParams(e); }} >
